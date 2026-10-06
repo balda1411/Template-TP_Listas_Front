@@ -81,3 +81,16 @@ function skibiditoilet(){
 }
 
 skibiditoilet()
+
+const agregarComida = document.getElementById()
+agregarComida.addEventListener("submit", (event) =>{
+  event.preventDefault()
+  let nuevaComida ={
+    nombre: event.target.nombre.value, 
+    categoria: event.target.categoria.value,
+    provincia: event.target.categoria.value,
+    ingredientes: ""
+  }
+  comidas.push(nuevaComida)
+  skibiditoilet()
+})
