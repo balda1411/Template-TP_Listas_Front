@@ -1,72 +1,22 @@
 /*
     Cargar comidas en memoria desde el JSON
 */
-
-let comidas = [
-  {
-    "nombre": "Asado",
-    "categoria": "Parrilla",
-    "provincia": "Buenos Aires",
-    "ingredientes": ["Carne vacuna", "Sal", "Chimichurri"]
-  },
-  {
-    "nombre": "Empanadas",
-    "categoria": "Horno",
-    "provincia": "Tucumán",
-    "ingredientes": ["Carne", "Cebolla", "Aceitunas", "Huevo"]
-  },
-  {
-    "nombre": "Locro",
-    "categoria": "Guiso",
-    "provincia": "Salta",
-    "ingredientes": ["Maíz", "Porotos", "Chorizo", "Panceta", "Zapallo"]
-  },
-  {
-    "nombre": "Milanesa",
-    "categoria": "Frito",
-    "provincia": "Buenos Aires",
-    "ingredientes": ["Carne", "Huevo", "Pan rallado", "Aceite"]
-  },
-  {
-    "nombre": "Humita en Chala",
-    "categoria": "Horno",
-    "provincia": "Jujuy",
-    "ingredientes": ["Maíz", "Queso", "Cebolla", "Ají molido"]
-  },
-  {
-    "nombre": "Choripán",
-    "categoria": "Parrilla",
-    "provincia": "Córdoba",
-    "ingredientes": ["Choriz o", "Pan", "Chimichurri"]
-  },
-  {
-    "nombre": "Provoleta",
-    "categoria": "Parrilla",
-    "provincia": "Buenos Aires",
-    "ingredientes": ["Queso provolone", "Orégano", "Aceite de oliva"]
-  },
-  {
-    "nombre": "Milanesas a la napolitana",
-    "categoria": "Frito",
-    "provincia": "Santa Fe",
-    "ingredientes": ["Carne", "Tomate", "Queso", "Jamón", "Orégano"]
-  },
-  {
-    "nombre": "Matambre a la pizza",
-    "categoria": "Parrilla",
-    "provincia": "Buenos Aires",
-    "ingredientes": ["Matambre", "Queso", "Tomate", "Orégano"]
-  },
-  {
-    "nombre": "Torta Frita",
-    "categoria": "Frito",
-    "provincia": "Entre Ríos",
-    "ingredientes": ["Harina", "Agua", "Sal", "Grasa"]
-  }
-];
+fetch('./data/comidas.json')
+.then(response => response.json())
+.then(data =>{
+  console.log("comidas cargadas desde JSON");
+  console.log(data);
+  comidas = data;
+  agregar();
+})
+.catch(error =>{
+  console.log("Error al leer el archivo JSON")
+})
+let comidas = []
 const container = document.getElementById('comidaContainer');
 
-function skibiditoilet(){
+function agregar(){
+  container.innerHTML = ""
   comidas.forEach( comida => {
    container.innerHTML +=
    `
@@ -80,17 +30,18 @@ function skibiditoilet(){
   } )
 }
 
-skibiditoilet()
+agregar()
 
-const agregarComida = document.getElementById()
+const agregarComida = document.getElementById("agregarComida")
 agregarComida.addEventListener("submit", (event) =>{
   event.preventDefault()
   let nuevaComida ={
     nombre: event.target.nombre.value, 
     categoria: event.target.categoria.value,
-    provincia: event.target.categoria.value,
-    ingredientes: ""
+    provincia: event.target.provincia.value,
+    ingredientes: event.target.ingredientes.value
   }
   comidas.push(nuevaComida)
-  skibiditoilet()
+  agregar()
+  console.log(nuevaComida)
 })
