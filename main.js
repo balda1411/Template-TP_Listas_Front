@@ -15,19 +15,17 @@ fetch('./data/comidas.json')
 let comidas = []
 const container = document.getElementById('comidaContainer');
 
-function agregar(){
-  container.innerHTML = ""
-  comidas.forEach( comida => {
-   container.innerHTML +=
-   `
+function agregar(lista){
+  container.innerHTML +=
+  lista.forEach( comida =>{   `
    <article class="card">
    <h2>${comida.nombre}</h2>
    <p>${comida.provincia}</p>
    <span class="categoria">${comida.categoria}</span>
-   <ul class="ingredientes">${comida.ingredientes}</ul>
+   <ul class="ingredientes">${comida.ingredientes.map( ingrediente =>`<li>${ingrediente}</li>`).join('')}</ul>
    </article>
-   `
-  } )
+   `})
+
 }
 
 agregar()
@@ -45,3 +43,27 @@ agregarComida.addEventListener("submit", (event) =>{
   agregar()
   console.log(nuevaComida)
 })
+const buscador = document.getElementById('buscador')
+const filtroprovincia = document.getElementById('filtroprovincia')
+const filtrocategoria = document.getElementById('filtrocategoria')
+
+function filtrar(){
+  const comidasFiltradas = comidas.filter(comida =>{
+    return comida.categoria.includes(filtrocategoria.value) &&
+    comida.provincia.includes(filtroprovincia.value)
+  })
+  mostrarComidas(comidasFiltradas)
+}
+function buscar(){
+  const texto = buscador.value.toLowerCase()
+
+  const comidasFiltradas = comidas.filter(comida =>{
+    return comida.nombre.toLowerCase().includes(texto) 
+    ||  comida.provincia.toLowerCase().includes(texto) 
+    || comida.categoria.toLowerCase().includes(texto)
+  })
+  mostrarComidas(comidasFiltradas)
+}
+filtrocategoria.addEventListener("change", filtrar)
+filtroprovincia.addEventListener("change", filtrar)
+buscador.addEventListener("input", buscar)
