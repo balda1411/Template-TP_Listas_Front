@@ -1,69 +1,73 @@
 /*
     Cargar comidas en memoria desde el JSON
 */
-fetch('./data/comidas.json')
-.then(response => response.json())
-.then(data =>{
-  console.log("comidas cargadas desde JSON");
-  console.log(data);
-  comidas = data;
-  agregar();
-})
-.catch(error =>{
-  console.log("Error al leer el archivo JSON")
-})
-let comidas = []
-const container = document.getElementById('comidaContainer');
+fetch("./data/comidas.json")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("comidas cargadas desde JSON");
+    console.log(data);
+    comidas = data;
+    agregar();
+  })
+  .catch((error) => {
+    console.log("Error al leer el archivo JSON");
+  });
+let comidas = [];
+const container = document.getElementById("comidaContainer");
 
-function agregar(lista){
-  container.innerHTML +=
-  lista.forEach( comida =>{   `
+function agregar() {
+  container.innerHTML = "";
+  comidas.forEach((comida) => {
+    container.innerHTML += `
    <article class="card">
    <h2>${comida.nombre}</h2>
    <p>${comida.provincia}</p>
    <span class="categoria">${comida.categoria}</span>
-   <ul class="ingredientes">${comida.ingredientes.map( ingrediente =>`<li>${ingrediente}</li>`).join('')}</ul>
+   <ul class="ingredientes">${comida.ingredientes}</ul>
    </article>
-   `})
-
+   `;
+  });
 }
 
-agregar()
-
-const agregarComida = document.getElementById("agregarComida")
-agregarComida.addEventListener("submit", (event) =>{
-  event.preventDefault()
-  let nuevaComida ={
-    nombre: event.target.nombre.value, 
+agregar();
+const agregarComida = document.getElementById("agregarComida");
+agregarComida.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let nuevaComida = {
+    nombre: event.target.nombre.value,
     categoria: event.target.categoria.value,
     provincia: event.target.provincia.value,
-    ingredientes: event.target.ingredientes.value
-  }
-  comidas.push(nuevaComida)
-  agregar()
-  console.log(nuevaComida)
-})
-const buscador = document.getElementById('buscador')
-const filtroprovincia = document.getElementById('filtroprovincia')
-const filtrocategoria = document.getElementById('filtrocategoria')
+    ingredientes: event.target.ingredientes.value,
+  };
+  comidas.push(nuevaComida);
+  agregar();
+  console.log(nuevaComida);
+});
+const buscador = document.getElementById("buscador");
+const filtroprovincia = document.getElementById("filtroprovincia");
+const filtrocategoria = document.getElementById("filtrocategoria");
 
-function filtrar(){
-  const comidasFiltradas = comidas.filter(comida =>{
-    return comida.categoria.includes(filtrocategoria.value) &&
-    comida.provincia.includes(filtroprovincia.value)
-  })
-  mostrarComidas(comidasFiltradas)
+function filtrar() {
+  const comidasFiltradas = comidas.filter((comida) => {
+    return (
+      comida.categoria.includes(filtrocategoria.value) &&
+      comida.provincia.includes(filtroprovincia.value)
+    );
+  });
+  mostrarComidas(comidasFiltradas);
 }
-function buscar(){
-  const texto = buscador.value.toLowerCase()
+function buscar() {
+  const texto = buscador.value.toLowerCase();
 
-  const comidasFiltradas = comidas.filter(comida =>{
-    return comida.nombre.toLowerCase().includes(texto) 
-    ||  comida.provincia.toLowerCase().includes(texto) 
-    || comida.categoria.toLowerCase().includes(texto)
-  })
-  mostrarComidas(comidasFiltradas)
+  const comidasFiltradas = comidas.filter((comida) => {
+    return (
+      comida.nombre.toLowerCase().includes(texto) ||
+      comida.provincia.toLowerCase().includes(texto) ||
+      comida.categoria.toLowerCase().includes(texto)
+    );
+  });
+  mostrarComidas(comidasFiltradas);
 }
-filtrocategoria.addEventListener("change", filtrar)
-filtroprovincia.addEventListener("change", filtrar)
-buscador.addEventListener("input", buscar)
+filtrocategoria.addEventListener("change", filtrar);
+filtroprovincia.addEventListener("change", filtrar);
+buscador.addEventListener("input", buscar); 

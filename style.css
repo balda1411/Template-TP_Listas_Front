@@ -1,9 +1,7 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0px;
-
-
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0px;
 }
 .comida-container {
   width: 100%;
@@ -11,9 +9,9 @@
   display: flex;
   flex-wrap: wrap;
   background-color: rgb(223, 222, 222);
-  gap:2rem
+  gap: 0.1rem;
 }
-article{
+article {
   margin: 3rem;
   background-color: white;
   display: flex;
@@ -30,12 +28,11 @@ article{
   font-variation-settings:
     "wdth" 100,
     "YTLC" 500;
- 
 }
-button{
-  width: 6rem;
+button {
+  width: 9rem;
   height: 3vh;
-  background-color: white; 
+  background-color: white;
   border: solid, black, 0.1rem;
   font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
@@ -45,21 +42,21 @@ button{
     "wdth" 100,
     "YTLC" 500;
 }
-.addFood{
-  display: flex;
-  justify-content: center;
-  
-}
-.agregarComida{
+.addFood {
+  height: 10vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+#agregarComida {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
   width: 20rem;
-  font-family: "Nunito Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100,
-    "YTLC" 500;
-
+  .doppio-one-regular {
+    font-family: "Doppio One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 }
