@@ -5,53 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comidas Argentinas</title> 
     <link rel="stylesheet" href="style.css"> 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Doppio+One&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <header>
-      <input type="search" id="buscador" placeholder="Busca por nombre, provinica o categoría">
-      <select id="filtrocategoria">
-        <option value="">Todas las categorías</option>
-        <option value="Parrilla">Parrilla</option>
-        <option value="Horno">Horno</option>
-        <option value="Guiso">Guiso</option>
-        <option value="Frito">Frito</option>
-      </select>
-      <select id="filtroprovincia">
-      <option value="">Todas las provincias</option>
-      <option value="Buenos Aires">Buenos Aires</option>
-      <option value="Cordoba">Córdoba</option>
-      <option value="Entre Rios">Entre Ríos</option>
-      <option value="Jujuy">Jujuy</option>
-      <option value="Salta">Salta</option>
-      <option value="Santa Fe">Santa Fe</option>
-      <option value="Tucuman">Tucumán</option>
-    </select>
+      <!-- Para filtros y navegacion -->
+       <input type="search"  id="Buscar" placeholder="Filtrar Por Provincia, Categoría o Comida">
+       <select id="filtrocategoria">
+       </select>
+       <select id="filtroprovincia">
+       </select>
+    
     </header>
 
     <main class="comida-container" id="comidaContainer">
-        <!-- Contenido Dinamico -->
+
     </main>     
 
     <section class="addFood">
-      <form id="agregarComida">
-        <h2> Agregar</h2>
-        <label for="nombredecomida">Nombre</label>
-        <input type="text" id="nombre" name="nombre" required>
-        <label for="provinciacomida">Provincia</label>
-        <input type="text" id="provincia" name="provincia" required>
-        <label for="categoriacomida">Categoria</label>
-        <input type="text" id="categoria" name="categoria" required>
-        <label for="ingredientescomida" >Ingredientes</label>
-        <input type="text" id="ingredientes" name="ingredientes" required></input>
-
-
-        <button type="submit">Send</button>
-      </form>
       <!-- Para el form para agregar comida -->
+       <form id="agregarcomida">
+        <section class="inputs">
+          <label for="nombre">Nombre de la comida</label>
+          <input type="text" id="nombre" placeholder="Nombre de la Comida">
+          
+          <label for="categoria">Categoría</label>
+          <input type="text" id="categoria" placeholder="Categoría">
+          <label for="provincia">Provincia</label>
+          <input type="text" id="provincia" placeholder="Provincia">
+          <label for="ingredientes">Ingredientes</label>
+          <input type="text" id="ingredientes"class="ingrediente" placeholder="Ingredientes">
+        </section>
+        <section class="botones">
+          <button type="button" id="agregarIngredientes">Agregar Ingredientes</button>
+          <button type="submit">Agregar la comida</button>
+        </section>
+       </form>
     </section>
 
     <script type="module" src="./main.js"></script>
